@@ -1,0 +1,43 @@
+{
+  "name": "mern-boiler-plate",
+  "version": "1.0.0",
+  "description": "mern boiler plate",
+  "main": "index.js",
+  "engine": {
+    "node": "10.16.0",
+    "npm": "6.9.0"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "backend": "nodemon server/index.js",
+    "frontend": "npm run start --prefix client",
+    "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\""
+  },
+  "author": "Smruti Ranjan Rana",
+  "license": "ISC",
+  "keywords": [],
+  "dependencies": {
+    "@sendgrid/mail": "^6.5.5",
+    "bcrypt": "^3.0.6",
+    "cloudinary": "^1.20.0",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "datauri": "^2.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "http-errors": "^1.7.3",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.4.20",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "pug": "^2.0.4",
+    "react-cookie": "^4.0.3",
+    "saslprep": "^1.0.3"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0"
+  }
+}
