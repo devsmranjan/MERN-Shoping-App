@@ -5,8 +5,34 @@ import {
     loginUser,
     resendVerificationLink
 } from '../../../_actions/user/user_actions';
+import {
+    Container,
+    TextField,
+    Box,
+    Grid,
+    Paper,
+    Typography,
+    Button
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        flexGrow: 1
+    },
+    paper: {
+        padding: theme.spacing(6),
+        textAlign: 'center',
+        margin: theme.spacing(2)
+        // color: theme.palette.text.secondary
+    },
+    button: {
+        letterSpacing: '2px'
+    }
+}));
 
 const LoginPage = props => {
+    const classes = useStyles();
     const dispatch = useDispatch();
 
     const [email, setEmail] = useState('');
@@ -72,38 +98,70 @@ const LoginPage = props => {
     };
 
     return (
-        <div
-            style={{
-                height: '100vh',
-                width: '100vw',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center'
-            }}>
-            <div>
-                <div>
-                    <h1>Login Page</h1>
-                    <form onSubmit={e => onSubmit(e)}>
-                        <input
-                            type='email'
-                            placeholder='email'
-                            value={email}
-                            onChange={e => handleChangeEmail(e.target.value)}
-                            required
-                        />
-                        <input
-                            type='password'
-                            placeholder='password'
-                            value={password}
-                            onChange={e => handleChangePassword(e.target.value)}
-                            required
-                        />
-                        <button type='submit'>Login</button>
-                        {resendVerficationLinkButton}
+        <Grid
+            container
+            className={classes.root}
+            justify='center'
+            alignItems='center'
+            style={{ height: '100vh' }}>
+            <Grid item xs={12} sm={6} md={4}>
+                <Paper className={classes.paper}>
+                    <form
+                        noValidate
+                        autoComplete='off'
+                        onSubmit={e => onSubmit(e)}>
+                        <Typography
+                            component='h1'
+                            variant='h5'
+                            style={{ fontWeight: 'bold' }}>
+                            Welcome Back!
+                        </Typography>
+                        <Box height='24px' />
+                        <div>
+                            <TextField
+                                type='email'
+                                label='Your Email'
+                                placeholder='example@email.com'
+                                fullWidth='true'
+                                variant='outlined'
+                                value={email}
+                                onChange={e =>
+                                    handleChangeEmail(e.target.value)
+                                }
+                                required
+                            />
+                        </div>
+                        <Box height='14px' />
+                        <div>
+                            <TextField
+                                type='password'
+                                label='Password'
+                                placeholder='******'
+                                fullWidth='true'
+                                variant='outlined'
+                                value={password}
+                                onChange={e =>
+                                    handleChangePassword(e.target.value)
+                                }
+                                required
+                            />
+                        </div>
+                        <Box height='18px' />
+                        <Button
+                            type='submit'
+                            className={classes.button}
+                            variant='contained'
+                            color='primary'
+                            disableElevation>
+                            Login
+                        </Button>
                     </form>
-                </div>
-            </div>
-        </div>
+                    {
+                        // resendVerficationLinkButton
+                    }
+                </Paper>
+            </Grid>
+        </Grid>
     );
 };
 

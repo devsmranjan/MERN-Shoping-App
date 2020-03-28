@@ -2,8 +2,34 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { signUpUser } from '../../../_actions/user/user_actions';
+import {
+    Container,
+    TextField,
+    Box,
+    Grid,
+    Paper,
+    Typography,
+    Button
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        flexGrow: 1
+    },
+    paper: {
+        padding: theme.spacing(6),
+        textAlign: 'center',
+        margin: theme.spacing(2)
+        // color: theme.palette.text.secondary
+    },
+    button: {
+        letterSpacing: '2px'
+    }
+}));
 
 const SignupPage = props => {
+    const classes = useStyles();
     const dispatch = useDispatch();
 
     const [email, setEmail] = useState('');
@@ -42,7 +68,7 @@ const SignupPage = props => {
                 // if (response.payload.user.isVerified) {
                 //     props.history.push('/');
                 // } else {
-                
+
                 if (response.payload.success) {
                     props.history.push('/');
                 }
@@ -55,55 +81,95 @@ const SignupPage = props => {
     };
 
     return (
-        <div
-            style={{
-                height: '100vh',
-                width: '100vw',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center'
-            }}>
-            <div>
-                <div>
-                    <h1>Signup Page</h1>
-                    <form onSubmit={e => onSubmit(e)}>
-                        <input
-                            type='email'
-                            placeholder='email'
-                            value={email}
-                            name='email'
-                            onChange={e => handleChangeEmail(e.target.value)}
-                            required
-                        />
-                        <input
-                            type='text'
-                            placeholder='username'
-                            value={username}
-                            name='username'
-                            onChange={e => handleChangeUsername(e.target.value)}
-                            required
-                        />
-                        <input
-                            type='password'
-                            placeholder='password'
-                            value={password}
-                            name='password'
-                            onChange={e => handleChangePassword(e.target.value)}
-                            required
-                        />
-                        <input
-                            type='text'
-                            placeholder='full name'
-                            value={name}
-                            name='name'
-                            onChange={e => handleChangeName(e.target.value)}
-                            required
-                        />
-                        <button type='submit'>Signup</button>
+        <Grid
+            container
+            className={classes.root}
+            justify='center'
+            alignItems='center'
+            style={{ height: '100vh' }}>
+            <Grid item xs={12} sm={6} md={4}>
+                <Paper className={classes.paper}>
+                    <form
+                        noValidate
+                        autoComplete='off'
+                        onSubmit={e => onSubmit(e)}>
+                        <Typography
+                            component='h1'
+                            variant='h5'
+                            style={{ fontWeight: 'bold' }}>
+                            Welcome!
+                        </Typography>
+                        <Box height='24px' />
+                        <div>
+                            <TextField
+                                type='email'
+                                label='Your Email'
+                                placeholder='example@email.com'
+                                fullWidth='true'
+                                variant='outlined'
+                                value={email}
+                                onChange={e =>
+                                    handleChangeEmail(e.target.value)
+                                }
+                                required
+                            />
+                        </div>
+                        <Box height='14px' />
+                        <div>
+                            <TextField
+                                type='text'
+                                label='Username'
+                                placeholder='username'
+                                fullWidth='true'
+                                variant='outlined'
+                                value={username}
+                                onChange={e =>
+                                    handleChangeUsername(e.target.value)
+                                }
+                                required
+                            />
+                        </div>
+                        <Box height='14px' />
+                        <div>
+                            <TextField
+                                type='password'
+                                label='Password'
+                                placeholder='******'
+                                fullWidth='true'
+                                variant='outlined'
+                                value={password}
+                                onChange={e =>
+                                    handleChangePassword(e.target.value)
+                                }
+                                required
+                            />
+                        </div>
+                        <Box height='14px' />
+                        <div>
+                            <TextField
+                                type='text'
+                                label='Full Name'
+                                placeholder='Your name'
+                                fullWidth='true'
+                                variant='outlined'
+                                value={name}
+                                onChange={e => handleChangeName(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <Box height='18px' />
+                        <Button
+                            type='submit'
+                            className={classes.button}
+                            variant='contained'
+                            color='primary'
+                            disableElevation>
+                            Signup
+                        </Button>
                     </form>
-                </div>
-            </div>
-        </div>
+                </Paper>
+            </Grid>
+        </Grid>
     );
 };
 
