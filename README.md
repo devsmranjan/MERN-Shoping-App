@@ -7,3 +7,6 @@ To use this application,
 5. Get all cloudinary API keys to store images
 6. Get SendGrid API key for sending mails
 
+```shell
+npm i
+```
