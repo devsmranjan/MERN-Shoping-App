@@ -10,3 +10,7 @@ To use this application,
 ```shell
 npm i
 ```
+
+```typescript
+ const v:string = "Hello"
+```
