@@ -13,4 +13,6 @@ npm i
 
 ```typescript
  const v:string = "Hello"
+ 
+ const fun = ({a, b}) => {}
 ```
